@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Submissions</title>
+</head>
+<body>
+    <h1>All User Submissions</h1>
+    <a href="{{ url_for('logout') }}">Logout</a>
+    <ul>
+        {% for sub in submissions %}
+            <li><strong>{{ sub[2] }}</strong>: {{ sub[1] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

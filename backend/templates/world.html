@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The World</title>
+    <style>
+        body { background: #222; color: #aaaaaa; font-family: Arial, sans-serif; margin: 0; }
+        .container { max-width: 800px; margin: 60px auto; padding: 2em; background: #292929; border-radius: 1em; box-shadow: 0 0 20px #000; }
+        h1 { text-align: center; font-size: 3em; margin-bottom: 1em; }
+        p { text-align: center; font-size: 1.5em; }
+        a { color: #2196f3; text-decoration: none; }
+         #home-link {
+            position: fixed;
+            top: 60px;
+            right: 300px;
+            font-size: 2.2em;
+            color: #eeeeee;
+            background: none;
+            padding: 0;
+            border-radius: 0;
+            box-shadow: none;
+            z-index: 2000;
+            text-decoration: none;
+            transition: color 0.2s;
+            font-weight: bold;
+        }
+        #home-link:hover {
+            color: #999999;
+            background: none;
+            text-decoration: none;
+        }
+        #world-link {
+            position: fixed;
+            top: 60px;
+            right: 120px;
+            font-size: 2.2em;
+            color: #eeeeee;
+            background: none;
+            padding: 0;
+            border-radius: 0;
+            box-shadow: none;
+            z-index: 2000;
+            text-decoration: none;
+            transition: color 0.2s;
+            font-weight: bold;
+        }
+        #world-link:hover {
+            color: #999999;
+            background: none;
+            text-decoration: none;
+        }
+    </style>
+    <style>
+    @media (max-width: 600px) {
+        .container {
+            max-width: 100vw;
+            margin: 0;
+            padding: 1em 0.2em;
+            border-radius: 0;
+            box-shadow: none;
+        }
+        h1 {
+            font-size: 22px;
+            margin-bottom: 0.7em;
+        }
+        p {
+            font-size: 15px;
+        }
+        #failures-list ul {
+            margin-top: 1.2em;
+        }
+        #failures-list li {
+            font-size: 13px;
+            padding: 0.7em 0.7em;
+            margin: 0.7em 0;
+        }
+        #home-link, #world-link {
+            font-size: 1em;
+            top: 12px;
+            right: unset;
+            left: unset;
+            margin-right: 0.5em;
+            margin-left: 0;
+            position: fixed;
+        }
+        #home-link {
+            right: 70px;
+        }
+        #world-link {
+            right: 10px;
+        }
+        #contact-info {
+            font-size: 12px;
+            margin-top: 2em;
+        }
+    }
+    </style>
+</head>
+<body>
+    <a href="/" id="home-link">HOME</a>
+    <a href="/world" id="world-link">WORLD</a>
+    <div class="container">
+        <h1 style="margin-bottom: 0.5em;">The World of Failures</h1>
+        <p style="margin-bottom: 3em;">This is the world.</p>
+        <div id="failures-list">
+            {% if submissions %}
+                <ul style="list-style:none; padding:0; margin-top:2.5em;">
+                {% for content, timestamp in submissions %}
+                    <li style="background:#202020; margin:1.5em 0; padding:1.2em 1.5em; border-radius:1em; box-shadow:0 2px 8px #0004;">
+                        <div style="font-size:1.3em; color:#eee; margin-bottom:0.5em;">{{ content|e }}</div>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p style="color:#aaa;">No failures have been shared yet.</p>
+            {% endif %}
+        </div>
+    </div>
+    <div id="contact-info" style="position:static; display:block; width:100%; text-align:center; margin-top:4em; color:#aaa; font-size:1.2em; font-family:Arial,sans-serif; opacity:0.7; user-select:none;">Contact: ranyafayne@gmail.com</div>
+</body>
+</html>

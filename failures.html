@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The World of Failures</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #222222;
+            margin: 0;
+            padding: 0;
+        }
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            width: 100vw;
+            text-align: center;
+        }
+        h1 {
+            color: #eeeeee;
+            font-size: 80px;
+            margin: 0;
+            transition: opacity 0.5s;
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 0 0 0;
+            width: 100vw;
+            max-width: 100vw;
+        }
+        p {
+            color: #808080;
+            font-size: 50px;
+            transition: opacity 0.5s;
+            margin-bottom: 0;
+            width: 100%;
+            max-width: 100vw;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        label {
+            color: #525252;
+            font-size: 25px;
+            display: block;
+            text-align: center;
+            width: 100%;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20vh;
+        }
+        button[type="submit"] {
+            font-size: 2.0em;
+            padding: 0.4em 0.8em;
+            border-radius: 0.5em;
+            margin-top: 0.5em;
+        }
+        textarea {
+            border-radius: 0.8em;
+            padding: 0.5em 0.8em;
+            font-size: 25px;
+            font-family: Arial, sans-serif;
+        }
+        .secondary-info {
+            color: #666666;
+            font-size: 40px;
+            max-width: 90vw;
+            width: 90vw;
+            text-align: center;
+            transition: opacity 0.5s;
+            margin: 10px auto 50vh auto;
+            box-sizing: border-box;
+        }
+        #home-link {
+            position: fixed;
+            top: 60px;
+            right: 300px;
+            font-size: 2.2em;
+            color: #eeeeee;
+            background: none;
+            padding: 0;
+            border-radius: 0;
+            box-shadow: none;
+            z-index: 2000;
+            text-decoration: none;
+            transition: color 0.2s;
+            font-weight: bold;
+        }
+        #home-link:hover {
+            color: #999999;
+            background: none;
+            text-decoration: none;
+        }
+        #world-link {
+            position: fixed;
+            top: 60px;
+            right: 120px;
+            font-size: 2.2em;
+            color: #eeeeee;
+            background: none;
+            padding: 0;
+            border-radius: 0;
+            box-shadow: none;
+            z-index: 2000;
+            text-decoration: none;
+            transition: color 0.2s;
+            font-weight: bold;
+        }
+        #world-link:hover {
+            color: #999999;
+            background: none;
+            text-decoration: none;
+        }
+        #contact-info {
+            position: static !important;
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 0.5em;
+            color: #aaa;
+            font-size: 1.5em;
+            font-family: Arial, sans-serif;
+            opacity: 0.7;
+            user-select: none;
+        }
+        @media (max-width: 600px) {
+            html, body {
+                overflow-x: hidden;
+                max-width: 100vw;
+            }
+            h1 {
+                font-size: 20px;
+                white-space: normal;
+                word-break: break-word;
+            }
+            .content {
+                padding: 20px 0 0 0;
+                width: 100vw;
+                max-width: 100vw;
+            }
+            p, .secondary-info {
+                font-size: 15px;
+                max-width: 98vw;
+                white-space: normal;
+                word-break: break-word;
+                overflow-x: visible;
+            }
+            .secondary-info {
+                font-size: 10px;
+                margin: 10px auto 40vh auto;
+            }
+            label {
+                font-size: 13px;
+                white-space: normal;
+                word-break: break-word;
+            }
+            textarea {
+                font-size: 13px;
+                width: 90vw;
+                max-width: 98vw;
+            }
+            button[type="submit"] {
+                font-size: 1em;
+            }
+            #home-link, #world-link {
+                font-size: 1.1em;
+                top: 18px;
+                right: unset;
+                left: unset;
+                margin-right: 0.7em;
+                margin-left: 0;
+                position: fixed;
+            }
+            #home-link {
+                right: 90px;
+            }
+            #world-link {
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="/" id="home-link">HOME</a>
+    <a href="/world" id="world-link">WORLD</a>
+    <div class="hero" id="hero-title">
+        <h1>Welcome to the world of failures.</h1>
+    </div>
+    <div class="content">
+        <p>This is a place where you can talk about your failures anonymously.</p><br>
+        <p class="secondary-info">You can also see some failures from other people in the "WORLD".<br>
+        The "WORLD" randomly shows 10 failures that other people shared every day,<br>
+        refreshes at midnight.</p>
+        <form id="failure-form" action="http://failures.world/" method="POST">
+            <label for="failure">Tell about your failure here, remember to make it short and clear.<br>
+            (If you have multiple failures that you want to share, please write only one story each time you submit)</label><br>
+            <textarea id="failure" name="failure" rows="8" cols="80" required></textarea><br>
+            <button type="submit">Submit</button>
+            <div id="success-message" style="display:none; color:#4caf4fd7; font-size:1.5em; text-align:center; margin-top:1em;">Your failure has been recorded successfully!</div>
+        </form>
+        <div id="confirmation-popup" style="display:none; background:#222; color:#eee; border-radius:1em; padding:2em; box-shadow:0 0 20px #000; text-align:center; position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); z-index:1000;">
+            <p style="font-size:1.5em; margin-bottom:1em;">Whatever you are sharing will be public and have a probability of being shown on this website. Hence, please submit only if you are willing to share, and make sure not to include any personal information.</p>
+            <button id="confirm-btn" style="font-size:1.2em; margin:0 1em 0 0; padding:0.5em 1.5em; border-radius:0.5em;">Confirm</button>
+            <button id="cancel-btn" style="font-size:1.2em; padding:0.5em 1.5em; border-radius:0.5em;">Cancel</button>
+        </div>
+    </div>
+    <div id="contact-info" style="position:static; display:block; width:100%; text-align:center; margin-top:4em; color:#aaa; font-size:1.2em; font-family:Arial,sans-serif; opacity:0.7; user-select:none;">Contact: rantafayne@gmail.com</div>
+    <script>
+        // Gradually fade out the hero title and the paragraph on scroll
+        window.addEventListener('scroll', function() {
+            const hero = document.getElementById('hero-title');
+            const h1 = hero.querySelector('h1');
+            const p = document.querySelector('.content p');
+            const secondary = document.querySelector('.secondary-info');
+            const worldLink = document.getElementById('world-link');
+            const homeLink = document.getElementById('home-link');
+            // Accelerate the fade-out: fade out over half the viewport height
+            const fadeDistance = window.innerHeight / 2;
+            const scrollY = window.scrollY;
+            let h1Opacity = 1;
+            if (scrollY < fadeDistance) {
+                h1Opacity = 1 - (scrollY / fadeDistance);
+            } else {
+                h1Opacity = 0;
+            }
+            h1.style.opacity = h1Opacity;
+            // Fade out world-link and home-link even faster (over 1/3 of viewport height)
+            const worldFadeDistance = window.innerHeight / 3;
+            let worldOpacity = 1;
+            if (scrollY < worldFadeDistance) {
+                worldOpacity = 1 - (scrollY / worldFadeDistance);
+            } else {
+                worldOpacity = 0;
+            }
+            if (worldLink) worldLink.style.opacity = worldOpacity;
+            if (homeLink) homeLink.style.opacity = worldOpacity;
+            // Gradually increase title font size as scrolling down
+            const minFont = 80; // px
+            const maxFont = 120; // px
+            let fontSize = minFont + ((maxFont - minFont) * (scrollY / fadeDistance));
+            if (fontSize > maxFont) fontSize = maxFont;
+            if (fontSize < minFont) fontSize = minFont;
+            h1.style.fontSize = fontSize + 'px';
+            // Gradually increase font size for p and secondary-info only when in middle of screen
+            const minPFont = 50; // px
+            const maxPFont = 60; // px
+            const minSecondaryFont = 40; // px
+            const maxSecondaryFont = 50; // px
+            const pRect = p.getBoundingClientRect();
+            const pMiddle = pRect.top + pRect.height / 2;
+            const viewportMiddle = window.innerHeight / 2;
+            let pFontSize = minPFont;
+            let secondaryFontSize = minSecondaryFont;
+            if (pMiddle <= viewportMiddle) {
+                // Start scaling when p middle is above or at viewport middle
+                let scale = (viewportMiddle - pMiddle) / viewportMiddle;
+                if (scale > 1) scale = 1;
+                if (scale < 0) scale = 0;
+                pFontSize = minPFont + (maxPFont - minPFont) * scale;
+                secondaryFontSize = minSecondaryFont + (maxSecondaryFont - minSecondaryFont) * scale;
+            }
+            p.style.fontSize = pFontSize + 'px';
+            if (secondary) {
+                // Only adjust font size, not width, so line breaks remain consistent
+                secondary.style.fontSize = (pFontSize * 0.6) + 'px';
+            }
+            // Fade out p and secondary-info as user scrolls to form
+            const content = document.querySelector('.content');
+            const contentTop = content.getBoundingClientRect().top + window.scrollY;
+            let pOpacity = 1;
+            if (scrollY > contentTop - window.innerHeight / 2) {
+                pOpacity = 1 - ((scrollY - (contentTop - window.innerHeight / 2)) / (window.innerHeight / 2));
+                if (pOpacity < 0) pOpacity = 0;
+                if (pOpacity > 1) pOpacity = 1;
+            }
+            p.style.opacity = pOpacity;
+            if (secondary) secondary.style.opacity = pOpacity;
+        });
+        // Custom confirmation popup logic
+        const form = document.getElementById('failure-form');
+        const popup = document.getElementById('confirmation-popup');
+        const confirmBtn = document.getElementById('confirm-btn');
+        const cancelBtn = document.getElementById('cancel-btn');
+        let pendingSubmit = false;
+        form.addEventListener('submit', function(e) {
+            if (!pendingSubmit) {
+                e.preventDefault();
+                popup.style.display = 'block';
+            }
+        });
+        confirmBtn.addEventListener('click', function() {
+            pendingSubmit = true;
+            popup.style.display = 'none';
+            // Use AJAX to submit the form without reloading
+            const formData = new FormData(form);
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            }).then(function(response) {
+                if (response.ok) {
+                    document.getElementById('success-message').style.display = 'block';
+                    form.reset();
+                    // Hide the success message after 3 seconds and allow new submission
+                    setTimeout(function() {
+                        document.getElementById('success-message').style.display = 'none';
+                        pendingSubmit = false;
+                    }, 3000);
+                } else {
+                    alert('Submission failed. Please try again.');
+                    pendingSubmit = false;
+                }
+            }).catch(function() {
+                alert('Submission failed. Please try again.');
+                pendingSubmit = false;
+            });
+        });
+        cancelBtn.addEventListener('click', function() {
+            popup.style.display = 'none';
+            pendingSubmit = false;
+        });
+    </script>
+</body>
+</html>
